@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Gerenciar Produtos</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <h1>Painel Administrativo</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class="messages">
+          {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <h2>Adicionar Produto</h2>
+    <form method="POST" action="{{ url_for('adicionar') }}" enctype="multipart/form-data">
+        <input type="text" name="nome" placeholder="Nome do produto" required><br>
+        <textarea name="descricao" placeholder="Descrição do produto" required></textarea><br>
+        <input type="file" name="imagem" accept="image/*" required><br>
+        <button type="submit">Adicionar</button>
+    </form>
+
+    <h2>Produtos Existentes</h2>
+    <div class="produtos">
+        {% for produto in produtos %}
+        <div class="produto">
+            <img src="{{ url_for('static', filename='uploads/' + produto.imagem) }}" alt="{{ produto.nome }}">
+            <h2>{{ produto.nome }}</h2>
+            <p>{{ produto.descricao }}</p>
+            <a href="{{ url_for('editar', id=produto.id) }}">Editar</a> | 
+            <a href="{{ url_for('excluir', id=produto.id) }}" onclick="return confirmarExclusao('{{ produto.nome }}')">Excluir</a>
+        </div>
+    {% endfor %}
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

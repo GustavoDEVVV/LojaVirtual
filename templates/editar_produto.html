@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Produto</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <h1>Editar Produto</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        <input type="text" name="nome" value="{{ produto.nome }}" required><br>
+        <textarea name="descricao" required>{{ produto.descricao }}</textarea><br>
+        <img src="{{ url_for('static', filename='uploads/' ~ produto.imagem) }}" alt="Imagem atual" width="150"><br>
+        <input type="file" name="imagem" accept="image/*"><br>
+        <button type="submit">Salvar Alterações</button>
+    </form>
+
+    <a href="{{ url_for('admin') }}">Voltar</a>
+</body>
+</html>
