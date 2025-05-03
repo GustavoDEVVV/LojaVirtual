@@ -1,0 +1,2 @@
+cd "C:\Users\Windows\Desktop\Projetos grandes\LojaVirtual\backEnd"
+python app.py

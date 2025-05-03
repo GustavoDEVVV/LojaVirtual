@@ -1,40 +1,25 @@
+<!-- templates/admin.html -->
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Painel do Admin</title>
-</head>
-<body>
-    <h1>Painel do Administrador</h1>
-
-    <form id="formProduto">
-        <input type="text" id="nome" placeholder="Nome do produto" required>
-        <input type="text" id="descricao" placeholder="Descrição" required>
-        <button type="submit">Adicionar Produto</button>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Painel do Administrador</title>
+  </head>
+  <body>
+    <h1>Admin - Adicionar Produto</h1>
+    <form action="/produtos" method="post" enctype="multipart/form-data">
+      <input
+        type="text"
+        name="nome"
+        placeholder="Nome do Produto"
+        required
+      /><br />
+      <textarea name="descricao" placeholder="Descrição" required></textarea
+      ><br />
+      <input type="file" name="imagem" required /><br />
+      <button type="submit">Adicionar Produto</button>
     </form>
-
-    <button onclick="window.location.href='/editar'">Ir para Edição de Produtos</button>
-    <button onclick="window.location.href='/login'">Voltar ao Login</button>
-
-    <script>
-        const form = document.getElementById('formProduto');
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const nome = document.getElementById('nome').value;
-            const descricao = document.getElementById('descricao').value;
-
-            const resposta = await fetch('/produtos', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ nome, descricao })
-            });
-
-            const dados = await resposta.json();
-            alert(dados.mensagem);
-            form.reset();
-        });
-    </script>
-
-    
-</body>
+    <br />
+    <a href="/index">Voltar para Página Inicial</a>
+  </body>
 </html>
