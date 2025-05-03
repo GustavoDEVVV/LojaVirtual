@@ -1,22 +1,27 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <title>Loja - Produtos</title>
-    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <h1>Produtos</h1>
-    <div class="produtos">
-        {% for produto in produtos %}
-            <div class="produto">
-                <img src="{{ url_for('static', filename='uploads/' ~ produto.imagem) }}" alt="Imagem do produto">
-                <h2>{{ produto.nome }}</h2>
-                <p>{{ produto.descricao }}</p>
-            </div>
-        {% else %}
-            <p>Nenhum produto cadastrado ainda.</p>
-        {% endfor %}
-    </div>
+    <h1>Produtos disponíveis</h1>
+
+    <div id="produtos"></div>
+
+    <button onclick="window.location.href='/login'">Voltar ao Login</button>
+
+    <script>
+        fetch('/produtos')
+            .then(res => res.json())
+            .then(data => {
+                const container = document.getElementById('produtos');
+                data.forEach(p => {
+                    const div = document.createElement('div');
+                    div.innerHTML = `<h3>${p.nome}</h3><p>${p.descricao}</p>`;
+                    container.appendChild(div);
+                });
+            });
+    </script>
 </body>
 </html>
