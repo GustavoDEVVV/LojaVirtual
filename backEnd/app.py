@@ -1,85 +1,72 @@
-from flask import Flask, request, jsonify, render_template, redirect, url_for
-from flask_cors import CORS
-from werkzeug.utils import secure_filename
+from flask import Flask, request, jsonify, render_template, send_from_directory
 import os
+from flask_cors import CORS
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='../templates')
 CORS(app)
 
-# Pasta onde as imagens serão salvas
-UPLOAD_FOLDER = os.path.join('static', 'imagens')
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+# Alterando para salvar arquivos dentro de 'static/uploads'
+app.config['UPLOAD_FOLDER'] = os.path.join('static', 'uploads')
+os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
-# Simulando banco de dados
+# Lista simulada de produtos
 produtos = []
-id_produto = 1
 
-# Rota inicial: login
+# Rota para servir imagens
+@app.route('/uploads/<filename>')
+def servir_imagem(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
+# Rota principal - Página com os produtos
 @app.route('/')
-def home():
-    return redirect(url_for('login'))
+def index():
+    return render_template('index.html')
 
+# Rota para login
 @app.route('/login')
 def login():
     return render_template('login.html')
 
-@app.route('/index')
-def index():
-    return render_template('index.html', produtos=produtos)
-
+# Rota para painel administrativo
 @app.route('/admin')
 def admin():
     return render_template('admin.html')
 
+# Rota para editar produtos
 @app.route('/editar')
 def editar():
-    return render_template('editar.html', produtos=produtos)
+    return render_template('editar_produto.html')
 
+# API - Listar produtos (GET)
+@app.route('/produtos', methods=['GET'])
+def listar_produtos():
+    return jsonify(produtos)
+
+# API - Adicionar produto (POST)
 @app.route('/produtos', methods=['POST'])
 def adicionar_produto():
-    global id_produto
+    if request.content_type.startswith('multipart/form-data'):
+        nome = request.form.get('nome')
+        descricao = request.form.get('descricao')
+        imagem = request.files.get('imagem')
 
-    nome = request.form.get('nome')
-    descricao = request.form.get('descricao')
-    imagem = request.files.get('imagem')
+        if not nome or not descricao or not imagem:
+            return jsonify({'mensagem': 'Todos os campos são obrigatórios!'}), 400
 
-    if not nome or not descricao or not imagem:
-        return jsonify({'mensagem': 'Todos os campos são obrigatórios.'}), 400
+        caminho_imagem = os.path.join(app.config['UPLOAD_FOLDER'], imagem.filename)
+        imagem.save(caminho_imagem)
 
-    filename = secure_filename(imagem.filename)
-    imagem.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        produtos.append({
+            'nome': nome,
+            'descricao': descricao,
+            'imagem': imagem.filename  # só o nome, mas você pode salvar o caminho também
+        })
+        return jsonify({'mensagem': 'Produto adicionado com sucesso!'}), 201
 
-    produtos.append({
-        'id': id_produto,
-        'nome': nome,
-        'descricao': descricao,
-        'imagem': filename
-    })
-    id_produto += 1
-
-    return jsonify({'mensagem': 'Produto adicionado com sucesso!'})
-
-@app.route('/produtos/<int:id>', methods=['POST'])
-def atualizar_produto(id):
-    produto = next((p for p in produtos if p['id'] == id), None)
-    if not produto:
-        return jsonify({'mensagem': 'Produto não encontrado'}), 404
-
-    nome = request.form.get('nome')
-    descricao = request.form.get('descricao')
-    imagem = request.files.get('imagem')
-
-    if nome:
-        produto['nome'] = nome
-    if descricao:
-        produto['descricao'] = descricao
-    if imagem:
-        filename = secure_filename(imagem.filename)
-        imagem.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        produto['imagem'] = filename
-
-    return jsonify({'mensagem': 'Produto atualizado com sucesso!'})
+    else:
+        novo_produto = request.get_json()
+        produtos.append(novo_produto)
+        return jsonify({'mensagem': 'Produto adicionado com sucesso!'}), 201
 
 if __name__ == '__main__':
     app.run(debug=True)
