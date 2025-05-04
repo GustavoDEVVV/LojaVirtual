@@ -3,13 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <title>Editar Produtos</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/editar_produto.css') }}">
 </head>
 <body>
-    <h1>Editar Produtos</h1>
 
-    <p>Aqui você poderá futuramente editar produtos cadastrados.</p>
+<h1>Editar Produtos</h1>
 
+<table>
+    <thead>
+        <tr>
+            <th>Imagem</th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for produto in produtos %}
+        <tr>
+            <td><img src="{{ url_for('static', filename='uploads/' + produto['imagem']) }}" alt="Imagem do produto"></td>
+            
+            <form action="/editar_produto/{{ loop.index0 }}" method="POST">
+                <td>
+                    <input type="text" name="nome" value="{{ produto['nome'] }}">
+                </td>
+                <td>
+                    <input type="text" name="descricao" value="{{ produto['descricao'] }}">
+                </td>
+                <td>
+                    <button class="edit-btn" type="submit">Editar</button>
+                </td>
+            </form>
+
+            <td>
+                <form action="/excluir_produto/{{ loop.index0 }}" method="POST">
+                    <button class="delete-btn" type="submit">Excluir</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table><br><br>
+
+<div class="buttons">
     <button onclick="window.location.href='/admin'">Voltar ao Painel do Admin</button>
     <button onclick="window.location.href='/login'">Voltar ao Login</button>
+</div>
 </body>
 </html>

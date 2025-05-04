@@ -3,11 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <style>
+        body {
+            background-color: #fff;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #e63946;
+            padding: 40px;
+            border-radius: 25px;
+            width: 300px;
+            color: white;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .tabs span {
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .tabs .active {
+            text-decoration: underline;
+        }
+
+        input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            background: white;
+            color: #e63946;
+            border: none;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .erro {
+            background: #fff3f3;
+            color: #911;
+            text-align: center;
+            padding: 5px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Login</h1>
 
-    <button onclick="window.location.href='/admin'">Acessar Painel do Admin</button>
-    <button onclick="window.location.href='/'">Acessar Loja (Index)</button>
+<div class="container">
+    <div class="tabs">
+        <span class="active">Login</span>
+        <span>Cadastro</span> <!-- Futuro recurso -->
+    </div>
+
+    <form method="POST">
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="senha" placeholder="Senha" required>
+        <button type="submit">Entrar</button>
+    </form>
+
+    {% if erro %}
+        <div class="erro">{{ erro }}</div>
+    {% endif %}
+</div>
+
 </body>
 </html>

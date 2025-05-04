@@ -19,9 +19,9 @@
                 data.forEach(p => {
                     const div = document.createElement('div');
                     div.innerHTML = `
+                    ${p.imagem ? `<img src="/static/uploads/${p.imagem}" alt="${p.nome}" width="200">` : ''}
                         <h3>${p.nome}</h3>
                         <p>${p.descricao}</p>
-                        ${p.imagem ? `<img src="/static/uploads/${p.imagem}" alt="${p.nome}" width="200">` : ''}
                     `;
                     container.appendChild(div);
                 });

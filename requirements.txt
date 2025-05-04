@@ -1,2 +1,13 @@
 cd "C:\Users\Windows\Desktop\Projetos grandes\LojaVirtual\backEnd"
 python app.py
+
+
+Senha para admin
+
+email: admin@site.com
+senha: admin123
+
+Senha para users
+
+email: usuario@site.com
+senha: user123
