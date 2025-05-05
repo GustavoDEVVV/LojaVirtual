@@ -1,0 +1,102 @@
+/* Configurações */
+:root {
+    font-size: 62.5%;
+}
+
+body {
+    background-color: #FEFEFE;
+    margin: 0%;
+}
+
+
+/* section principal */
+.Principal{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 10rem;
+}
+
+/* section forms */
+.forms{
+    display: block;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+/* titulo encima do forms  */
+
+.forms .tituloForms h1{
+    font-family: "Baumans", system-ui;
+    color: #F22E3E;
+    font-size: 7rem;
+    margin: 0%;
+}
+
+/* div do forms  */
+.container {
+    background-color: #F22E3E;
+    padding: 40px;
+    border-radius: 25px;
+    width: 300px;
+}
+
+.tabs {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+}
+
+.tabs span {
+    font-family: "Montserrat", sans-serif;
+    color: #FFFFFF;
+    font-weight: 500;
+    font-size: 2rem;
+}
+
+.tabs .active {
+    text-decoration: underline;
+}
+
+form input{
+    border: none;
+    width: 30rem;
+    height: 3rem;
+    border-radius: 1rem;
+    font-family: "Montserrat", sans-serif;
+    color: #F22E3E;
+}
+
+input::placeholder{
+    font-family: "Montserrat", sans-serif;
+    color: #F22E3E;
+    font-weight:300
+}
+
+button {
+    width: 30rem;
+    background: white;
+    color: #F22E3E;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.erro {
+    background: #fff3f3;
+    color: #F22E3E;
+    text-align: center;
+    padding: 5px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+/* div logo  */
+
+.Logo img{
+    width: 30rem;
+}

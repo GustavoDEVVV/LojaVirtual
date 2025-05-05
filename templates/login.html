@@ -1,90 +1,62 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Login</title>
-    <style>
-        body {
-            background-color: #fff;
-            font-family: 'Segoe UI', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
 
-        .container {
-            background-color: #e63946;
-            padding: 40px;
-            border-radius: 25px;
-            width: 300px;
-            color: white;
-        }
+    <!-- link da fonte Baumans  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baumans&family=Montserrat:ital,wght@0,900;1,900&display=swap"
+      rel="stylesheet"
+    />
 
-        .tabs {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
+    <!-- link da fonte Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baumans&family=Montserrat:ital,wght@0,900;1,900&display=swap"
+      rel="stylesheet"
+    />
 
-        .tabs span {
-            font-weight: bold;
-            cursor: pointer;
-        }
+    <!-- link do css  -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/login.css') }}"
+    />
+  </head>
+  <body>
 
-        .tabs .active {
-            text-decoration: underline;
-        }
+    <section class="Principal">
+        <div class="forms">
+          <div class="tituloForms">
+            <h1>Nexora</h1>
+          </div>
+    
+          <div class="container">
+            <div class="tabs">
+              <span class="active">Login</span>
+              <span>Cadastro</span>
+            </div>
+    
+            <form method="POST">
+              <input type="email" name="email" placeholder="Email" required /><br><br>
+              <input type="password" name="senha" placeholder="Senha" required /><br><br>
+              <button type="submit">Entrar</button>
+            </form>
+    
+            {% if erro %}
+            <div class="erro">{{ erro }}</div>
+            {% endif %}
+          </div>
+        </div>
 
-        input[type="email"], input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-        }
+        <div class="Logo">
+          <img src="{{ url_for('static', filename='imagens/login/Logo.png') }}" alt="Descrição da imagem">
+        </div>
+    </section>
+    
 
-        button {
-            width: 100%;
-            background: white;
-            color: #e63946;
-            border: none;
-            padding: 10px;
-            border-radius: 10px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .erro {
-            background: #fff3f3;
-            color: #911;
-            text-align: center;
-            padding: 5px;
-            margin-top: 10px;
-            border-radius: 5px;
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <div class="tabs">
-        <span class="active">Login</span>
-        <span>Cadastro</span> <!-- Futuro recurso -->
-    </div>
-
-    <form method="POST">
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="password" name="senha" placeholder="Senha" required>
-        <button type="submit">Entrar</button>
-    </form>
-
-    {% if erro %}
-        <div class="erro">{{ erro }}</div>
-    {% endif %}
-</div>
-
-</body>
+  </body>
 </html>
