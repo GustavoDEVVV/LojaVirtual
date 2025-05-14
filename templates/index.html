@@ -1,31 +1,86 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
+
+    <!-- link da fonte Baumans  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baumans&family=Montserrat:ital,wght@0,900;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- link da fonte Montserrat -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- link do css  -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/index.css') }}"
+    />
     <title>Loja - Produtos</title>
-</head>
-<body>
-    <h1>Produtos disponíveis</h1>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="../static/imagens/index/Nexora.png" alt="" />
+      </div>
 
-    <div id="produtos"></div>
+      <div class="links">
+        <nav>
+          <a href="#" id="active">Home</a>
+          <a href="#">Celulares</a>
+          <a href="#">Fones</a>
+          <a href="#">Notebooks</a>
+        </nav>
+      </div>
 
-    <button onclick="window.location.href='/login'">Voltar ao Login</button>
+      <div class="login">
+        <button onclick="window.location.href='/login'">
+          <img src="../static/imagens/index/User.png" alt="" />
+        </button>
+      </div>
+    </header>
 
+    <section class="secaoPrincipal">
+      <div class="imgMaior">
+        <img src="../static/imagens/index/Card principal.png" alt="" />
+      </div>
+      <div class="imgMenor">
+        <img src="../static/imagens/index/MiniCard1.png" alt="" />
+        <img src="../static/imagens/index/MiniCard2.png" alt="" />
+        <img src="../static/imagens/index/MiniCard3.png" alt="" />
+      </div>
+    </section>
+
+    <div class="AberturaPraOsProdutos">
+        <h1>Mais vendidos</h1>
+    </div>
+
+    <!-- <div id="produtos"></div> -->
     <script>
-        fetch('/produtos')
-            .then(res => res.json())
-            .then(data => {
-                const container = document.getElementById('produtos');
-                data.forEach(p => {
-                    const div = document.createElement('div');
-                    div.innerHTML = `
-                    ${p.imagem ? `<img src="/static/uploads/${p.imagem}" alt="${p.nome}" width="200">` : ''}
+      fetch("/produtos")
+        .then((res) => res.json())
+        .then((data) => {
+          const container = document.getElementById("produtos");
+          data.forEach((p) => {
+            const div = document.createElement("div");
+            div.innerHTML = `
+                    ${
+                      p.imagem
+                        ? `<img src="/static/uploads/${p.imagem}" alt="${p.nome}" width="200">`
+                        : ""
+                    }
                         <h3>${p.nome}</h3>
                         <p>${p.descricao}</p>
                     `;
-                    container.appendChild(div);
-                });
-            });
+            container.appendChild(div);
+          });
+        });
     </script>
-</body>
+  </body>
 </html>

@@ -2,8 +2,6 @@
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
-    <title>Login</title>
-
     <!-- link da fonte Baumans  -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -25,38 +23,50 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='css/login.css') }}"
     />
+
+    <title>Login</title>
   </head>
   <body>
-
     <section class="Principal">
-        <div class="forms">
-          <div class="tituloForms">
-            <h1>Nexora</h1>
-          </div>
-    
-          <div class="container">
-            <div class="tabs">
-              <span class="active">Login</span>
-              <span>Cadastro</span>
-            </div>
-    
-            <form method="POST">
-              <input type="email" name="email" placeholder="Email" required /><br><br>
-              <input type="password" name="senha" placeholder="Senha" required /><br><br>
-              <button type="submit">Entrar</button>
-            </form>
-    
-            {% if erro %}
-            <div class="erro">{{ erro }}</div>
-            {% endif %}
-          </div>
+      <div class="forms">
+        <div class="tituloForms">
+          <h1>Nexora</h1>
         </div>
 
-        <div class="Logo">
-          <img src="{{ url_for('static', filename='imagens/login/Logo.png') }}" alt="Descrição da imagem">
+        <div class="container">
+          <div class="tabs">
+            <span class="active">Login</span>
+            <span>Cadastro</span>
+          </div>
+
+          <form method="POST">
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              required
+            /><br /><br />
+            <input
+              type="password"
+              name="senha"
+              placeholder="Senha"
+              required
+            /><br /><br />
+            <button type="submit">Entrar</button>
+          </form>
+
+          {% if erro %}
+          <div class="erro">{{ erro }}</div>
+          {% endif %}
         </div>
+      </div>
+
+      <div class="Logo">
+        <img
+          src="{{ url_for('static', filename='imagens/login/Logo.png') }}"
+          alt="Descrição da imagem"
+        />
+      </div>
     </section>
-    
-
   </body>
 </html>

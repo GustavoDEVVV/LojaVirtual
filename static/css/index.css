@@ -1,0 +1,112 @@
+/* Configurações */
+:root {
+    font-size: 62.5%;
+}
+
+body {
+    background-color: #FEFEFE;
+    margin: 0%;
+}
+
+
+/* header  */
+header{
+    display: flex;
+    padding: 2rem;
+    justify-content: space-evenly;
+}
+
+header .logo img{
+    width: 10rem;
+}
+
+/* header nav  */
+header .links nav{
+gap: 5rem;
+}
+
+header .links nav a{
+    text-decoration: none;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    color: #000000;
+    font-size: 1.5rem;
+    padding: 2rem;
+    padding-bottom: 0;
+    position: relative;
+}
+
+#active{
+    font-weight: 700;
+}
+
+header a:hover {
+    color: #003F86;
+}
+
+header a::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: #F22E3E;
+    transition: width 0.4s ease, left 0.3s ease;
+}
+
+header a:hover::after {
+    left: 0;
+    justify-content: center;
+    width: 95%;
+}
+
+
+/* parte do icone login */
+header .login button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/* seção principal do site */
+.secaoPrincipal{
+    margin-top: 5rem;
+    display: grid;
+    justify-content: center;
+}
+
+.secaoPrincipal .imgMaior img{
+    width: 90rem;
+    transition: 1s;
+}
+
+.secaoPrincipal .imgMaior img:hover{
+    scale: 1.05;
+}
+
+.secaoPrincipal .imgMenor{
+    display: flex;
+    justify-content: center;
+}
+
+.secaoPrincipal .imgMenor img{
+    width: 25rem;
+    transition: 1s;
+}
+
+.secaoPrincipal .imgMenor img:hover{
+    scale: 1.1;
+}
+
+/* h1 que fica acima dos produtos */
+.AberturaPraOsProdutos{
+    margin-top: 5rem;
+    padding: 2rem;
+}
+
+.AberturaPraOsProdutos h1{
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 4rem;
+}
