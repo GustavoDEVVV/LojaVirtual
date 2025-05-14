@@ -51,7 +51,7 @@ body {
 .tabs span {
     font-family: "Montserrat", sans-serif;
     color: #FFFFFF;
-    font-weight: 500;
+    font-weight: 700;
     font-size: 2rem;
 }
 
@@ -71,7 +71,8 @@ form input{
 input::placeholder{
     font-family: "Montserrat", sans-serif;
     color: #F22E3E;
-    font-weight:300
+    padding: 0.5rem;
+    font-weight: 300;
 }
 
 button {

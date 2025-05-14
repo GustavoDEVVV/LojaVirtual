@@ -1,36 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/pagina_da_admin.css') }}">
-</head>
-<body>
-    <button onclick="window.location.href='/criar'">Criar um novo produto</button>
-    <button onclick="window.location.href='/editar'">Editar Produtos</button>
-    <br><br>
-    <section class="Produtos">
-        <div id="produtos"></div>
+    <!-- link da fonte Baumans  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baumans&family=Montserrat:ital,wght@0,900;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- link da fonte Montserrat -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- link do css  -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/pagina_da_admin.css') }}"
+    />
+  </head>
+
+  <body>
+    <header>
+      <div class="logo">
+        <img src="../static/imagens/index/Nexora.png" alt="" />
+      </div>
+
+      <div class="links">
+        <nav>
+          <a href="#" id="active">Home</a>
+          <a href="#">Celulares</a>
+          <a href="#">Fones</a>
+          <a href="#">Notebooks</a>
+        </nav>
+      </div>
+
+      <div class="login">
+        <button onclick="window.location.href='/login'">
+          <img
+            src="../static/imagens/PaginaAdministracao/iconLogin.png"
+            alt=""
+          />
+        </button>
+      </div>
+    </header>
+
+    <section class="BotoesParaAsRotasDeCriacao">
+      <button onclick="window.location.href='/criar'">
+        <img src="../static/imagens/PaginaAdministracao/iconMais.png" alt="" />
+      </button>
+      <button onclick="window.location.href='/editar'">
+        <img
+          src="../static/imagens/PaginaAdministracao/IconEditar.png"
+          alt=""
+        />
+      </button>
     </section>
 
+    <div class="AberturaPraOsProdutos">
+      <h1>Mais vendidos</h1>
+    </div>
+
+    <section class="MostrarProdutos">
+      <div id="produtos"></div>
+    </section>
 
     <script>
-        fetch('/produtos')
-            .then(res => res.json())
-            .then(data => {
-                const container = document.getElementById('produtos');
-                data.forEach(p => {
-                    const div = document.createElement('div');
-                    div.innerHTML = `
-                    ${p.imagem ? `<img src="/static/uploads/${p.imagem}" alt="${p.nome}" width="200">` : ''}
-                        <h3>${p.nome}</h3>
-                        <p>${p.descricao}</p>
-                    `;
-                    container.appendChild(div);
-                });
-            });
+      fetch("/produtos")
+        .then((res) => res.json())
+        .then((data) => {
+          const container = document.getElementById("produtos");
+          data.forEach((p) => {
+            const div = document.createElement("div");
+            div.classList.add("produto-card"); // Adiciona classe para estilização
+            div.innerHTML = `
+        ${
+          p.imagem
+            ? `<img src="/static/uploads/${p.imagem}" alt="${p.nome}" />`
+            : ""
+        }
+        <h3>${p.nome}</h3>
+        <p>${p.descricao}</p>
+          <div class="botao-comprar">
+          <button>Comprar</button>
+          <img src="../static/imagens/index/ShoppingBag.png" alt="sacola" />
+        </div>
+      `;
+            container.appendChild(div);
+          });
+        });
     </script>
-</body>
+  </body>
 </html>
