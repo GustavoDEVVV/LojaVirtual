@@ -1,54 +1,89 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Editar Produtos</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/editar_produto.css') }}">
-</head>
-<body>
+    <!-- link da fonte Baumans  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baumans&family=Montserrat:ital,wght@0,900;1,900&display=swap"
+      rel="stylesheet"
+    />
 
-<h1>Editar Produtos</h1>
+    <!-- link da fonte Montserrat -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
 
-<table>
-    <thead>
-        <tr>
+    <!-- link do css  -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/editar_produto.css') }}"
+    />
+  </head>
+  <body>
+    <section class="NomePrincipal">
+      <h1>Editar Produtos</h1>
+    </section>
+
+    <section class="FormsdeEdicao">
+      <table>
+        <thead>
+          <tr>
             <th>Imagem</th>
             <th>Nome</th>
             <th>Descrição</th>
             <th>Ações</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for produto in produtos %}
-        <tr>
-            <td><img src="{{ url_for('static', filename='uploads/' + produto['imagem']) }}" alt="Imagem do produto"></td>
-            
+          </tr>
+        </thead>
+        <tbody>
+          {% for produto in produtos %}
+          <tr>
+            <td>
+              <img
+                src="{{ url_for('static', filename='uploads/' + produto['imagem']) }}"
+                alt="Imagem do produto"
+              />
+            </td>
+
             <form action="/editar_produto/{{ loop.index0 }}" method="POST">
-                <td>
-                    <input type="text" name="nome" value="{{ produto['nome'] }}">
-                </td>
-                <td>
-                    <input type="text" name="descricao" value="{{ produto['descricao'] }}">
-                </td>
-                <td>
-                    <button class="edit-btn" type="submit">Editar</button>
-                </td>
+              <td>
+                <input type="text" name="nome" value="{{ produto['nome'] }}" />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  name="descricao"
+                  value="{{ produto['descricao'] }}"
+                />
+              </td>
+              <td>
+                <button class="edit-btn" type="submit">Editar</button>
+              </td>
             </form>
 
             <td>
-                <form action="/excluir_produto/{{ loop.index0 }}" method="POST">
-                    <button class="delete-btn" type="submit">Excluir</button>
-                </form>
+              <form action="/excluir_produto/{{ loop.index0 }}" method="POST">
+                <button class="delete-btn" type="submit">Excluir</button>
+              </form>
             </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table><br><br>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <br /><br />
+    </section>
 
-<div class="buttons">
-    <button onclick="window.location.href='/admin'">Voltar ao Painel do Admin</button>
-    <button onclick="window.location.href='/login'">Voltar ao Login</button>
-</div>
-</body>
+    <section class="buttons">
+      <button onclick="window.location.href='/admin'">Painel do Admin</button>
+      <button onclick="window.location.href='/login'">Login</button>
+    </section>
+
+    <footer>
+         © 2025 Gustavo Domingues. Todos os direitos reservados.
+    </footer>
+  </body>
 </html>

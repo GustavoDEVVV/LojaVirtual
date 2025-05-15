@@ -1,37 +1,83 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
+
+    <!-- link da fonte Baumans  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baumans&family=Montserrat:ital,wght@0,900;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- link da fonte Montserrat -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- link do css  -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/CriacaoDeProdutos.css') }}"
+    />
+
     <title>Painel do Admin</title>
-</head>
-<body>
-    <h1>Painel do Administrador</h1>
+  </head>
+  <body>
+    <section class="Conteiner">
+      <div class="Logo">
+        <img src="../static/imagens/criacaoDeProdutos/Nexora.png" alt="" />
+      </div>
 
-    <form id="formProduto" enctype="multipart/form-data">
-      <input type="file" id="imagem" name="imagem" accept="image/*" required><br><br>
-        <input type="text" id="nome" name="nome" placeholder="Nome do produto" required><br><br>
-        <input type="text" id="descricao" name="descricao" placeholder="Descrição" required><br><br>
-        <button type="submit">Adicionar Produto</button>
-    </form><br><br>
+      <div class="Forms">
+        <form id="formProduto" enctype="multipart/form-data">
+          <input
+            type="file"
+            id="imagem"
+            name="imagem"
+            accept="image/*"
+            required
+          /><br /><br />
+          <input
+            type="text"
+            id="nome"
+            name="nome"
+            placeholder="Nome do produto"
+            required
+          /><br /><br />
+          <input
+            type="text"
+            id="descricao"
+            name="descricao"
+            placeholder="Descrição"
+            required
+          /><br /><br />
+          <button type="submit">Adicionar</button>
+          <button onclick="window.location.href='/admin'">Voltar</button>
+        </form>
+      </div>
+    </section>
 
-    <button onclick="window.location.href='/admin'">Voltar a pagina de Administrador</button>
+    <footer>© 2025 Gustavo Domingues. Todos os direitos reservados.</footer>
 
     <script>
-        const form = document.getElementById('formProduto');
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
+      const form = document.getElementById("formProduto");
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-            const formData = new FormData(form);
+        const formData = new FormData(form);
 
-            const resposta = await fetch('/produtos', {
-                method: 'POST',
-                body: formData
-            });
-
-            const dados = await resposta.json();
-            alert(dados.mensagem);
-            form.reset();
+        const resposta = await fetch("/produtos", {
+          method: "POST",
+          body: formData,
         });
+
+        const dados = await resposta.json();
+        alert(dados.mensagem);
+        form.reset();
+      });
     </script>
-</body>
+  </body>
 </html>

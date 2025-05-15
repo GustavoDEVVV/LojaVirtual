@@ -40,6 +40,7 @@ body {
     padding: 40px;
     border-radius: 25px;
     width: 300px;
+    box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.45);
 }
 
 .tabs {
@@ -100,4 +101,21 @@ button {
 
 .Logo img{
     width: 30rem;
+}
+
+/* Parte do footer  */
+
+footer{
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ff2e41;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
 }
