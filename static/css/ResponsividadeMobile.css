@@ -1,0 +1,132 @@
+@media(min-width: 390px) and (max-width: 768px){
+    /* Pagina de login  */
+
+    /* section principal */
+.Principal{
+    display: block;
+}
+
+.forms{
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+/* div logo  */
+
+.Logo img{
+    display: none;
+}
+
+/* Pagina de admin  */
+
+/* header  */
+header .logo img{
+    width: 5rem;
+}
+
+header .links nav a{
+    font-size: 1rem;
+    padding: 1rem;
+}
+
+header .login img{
+    width: 1rem;
+}
+
+/* Parte dos botões para acesso as rotas de criação e edição */
+.BotoesParaAsRotasDeCriacao button{
+    width: 10rem;
+    height: 10rem;
+}
+
+/* h1 que fica acima dos produtos */
+.AberturaPraOsProdutos h1{
+    font-size: 2rem;
+}
+
+/* Pagina de edição de produtos  */
+
+h1 {
+    font-size: 2rem;
+}
+
+table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 1rem;
+    box-shadow: none;
+}
+
+thead, tbody, th, td, tr {
+    white-space: nowrap;
+}
+
+th, td {
+    padding: 1rem;
+    font-size: 1.4rem;
+}
+
+.edit-btn, .delete-btn {
+    padding: 0.8rem 1.4rem;
+    font-size: 1.2rem;
+}
+
+input[type="text"] {
+    width: 100%;
+    font-size: 1.4rem;
+    margin: 0.5rem 0;
+}
+
+.buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 4rem;
+}
+
+.buttons button {
+    width: 90%;
+    height: 4.5rem;
+    font-size: 1.5rem;
+}
+
+/* Pagina de index  */
+.secaoPrincipal .imgMaior img{
+    width: 30rem;
+    transition: 1s;
+}
+
+.secaoPrincipal .imgMenor img{
+    width: 10rem;
+    transition: 1s;
+}
+
+.produto-card {
+  padding: 20px;
+  width: 200px;
+}
+
+.produto-card img {
+  width: 100px;
+}
+
+.produto-card h3 {
+  font-size: 1.5rem;
+}
+
+.produto-card p {
+  font-size: 1rem;
+}
+
+.botao-comprar button {
+  width: 10rem;
+  height: 2.5rem;
+}
+
+.botao-comprar img {
+  width: 2.5rem;
+}
+}

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Pagina Administrativa</title>
 
     <!-- link da fonte Baumans  -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -24,10 +24,22 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='css/pagina_da_admin.css') }}"
     />
+
+    <!-- link da responsividade  -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/ResponsividadeMobile.css') }}"
+    />
+
+    <link
+      rel="icon"
+      type="image/png"
+      href="{{ url_for('static', filename='imagens/Favicon.png') }}"
+    />
   </head>
 
   <body>
-    <header>
+    <header class="scroll-animation">
       <div class="logo">
         <img src="../static/imagens/index/Nexora.png" alt="" />
       </div>
@@ -51,7 +63,7 @@
       </div>
     </header>
 
-    <section class="BotoesParaAsRotasDeCriacao">
+    <section class="BotoesParaAsRotasDeCriacao scroll-animation">
       <button onclick="window.location.href='/criar'">
         <img src="../static/imagens/PaginaAdministracao/iconMais.png" alt="" />
       </button>
@@ -63,15 +75,36 @@
       </button>
     </section>
 
-    <div class="AberturaPraOsProdutos">
+    <div class="AberturaPraOsProdutos scroll-animation">
       <h1>Mais vendidos</h1>
     </div>
 
-    <section class="MostrarProdutos">
+    <section class="MostrarProdutos scroll-animation">
       <div id="produtos"></div>
     </section>
 
     <footer>© 2025 Gustavo Domingues. Todos os direitos reservados.</footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const animatedElements = document.querySelectorAll(".scroll-animation");
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("active");
+              }
+            });
+          },
+          {
+            threshold: 0.2, // Ativa quando 20% do elemento estiver visível
+          }
+        );
+
+        animatedElements.forEach((el) => observer.observe(el));
+      });
+    </script>
 
     <script>
       fetch("/produtos")

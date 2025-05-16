@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Editar Produtos</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- link da fonte Baumans  -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,13 +23,25 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='css/editar_produto.css') }}"
     />
+
+    <!-- link da responsividade  -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/ResponsividadeMobile.css') }}"
+    />
+
+    <link
+      rel="icon"
+      type="image/png"
+      href="{{ url_for('static', filename='imagens/Favicon.png') }}"
+    />
   </head>
   <body>
-    <section class="NomePrincipal">
+    <section class="NomePrincipal scroll-animation">
       <h1>Editar Produtos</h1>
     </section>
 
-    <section class="FormsdeEdicao">
+    <section class="FormsdeEdicao scroll-animation">
       <table>
         <thead>
           <tr>
@@ -77,13 +89,32 @@
       <br /><br />
     </section>
 
-    <section class="buttons">
+    <section class="buttons scroll-animation">
       <button onclick="window.location.href='/admin'">Painel do Admin</button>
       <button onclick="window.location.href='/login'">Login</button>
     </section>
 
-    <footer>
-         © 2025 Gustavo Domingues. Todos os direitos reservados.
-    </footer>
+    <footer>© 2025 Gustavo Domingues. Todos os direitos reservados.</footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const animatedElements = document.querySelectorAll(".scroll-animation");
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("active");
+              }
+            });
+          },
+          {
+            threshold: 0.2, // Ativa quando 20% do elemento estiver visível
+          }
+        );
+
+        animatedElements.forEach((el) => observer.observe(el));
+      });
+    </script>
   </body>
 </html>

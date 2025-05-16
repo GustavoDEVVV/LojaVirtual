@@ -2,7 +2,7 @@
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- link da fonte Baumans  -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,10 +22,22 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='css/index.css') }}"
     />
-    <title>Loja - Produtos</title>
+
+    <!-- link da responsividade  -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/ResponsividadeMobile.css') }}"
+    />
+
+    <link
+      rel="icon"
+      type="image/png"
+      href="{{ url_for('static', filename='imagens/Favicon.png') }}"
+    />
+    <title>Nexora - Pensou? achou.</title>
   </head>
   <body>
-    <header>
+    <header class="scroll-animation">
       <div class="logo">
         <img src="../static/imagens/index/Nexora.png" alt="" />
       </div>
@@ -46,7 +58,7 @@
       </div>
     </header>
 
-    <section class="secaoPrincipal">
+    <section class="secaoPrincipal scroll-animation">
       <div class="imgMaior">
         <img src="../static/imagens/index/Card principal.png" alt="" />
       </div>
@@ -57,15 +69,16 @@
       </div>
     </section>
 
-    <div class="AberturaPraOsProdutos">
+    <div class="AberturaPraOsProdutos scroll-animation">
       <h1>Mais vendidos</h1>
     </div>
 
-    <section class="MostrarProdutos">
+    <section class="MostrarProdutos scroll-animation">
       <div id="produtos"></div>
     </section>
 
     <footer>© 2025 Gustavo Domingues. Todos os direitos reservados.</footer>
+
 
     <script>
       fetch("/produtos")
@@ -91,6 +104,27 @@
             container.appendChild(div);
           });
         });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const animatedElements = document.querySelectorAll(".scroll-animation");
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("active");
+              }
+            });
+          },
+          {
+            threshold: 0.2, // Ativa quando 20% do elemento estiver visível
+          }
+        );
+
+        animatedElements.forEach((el) => observer.observe(el));
+      });
     </script>
   </body>
 </html>
