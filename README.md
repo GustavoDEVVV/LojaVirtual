@@ -14,7 +14,7 @@ O Nexora é uma loja virtual com sistema de login e controle de permissões entr
 
 **Aplicação online:**
 - Site: *https://lojavirtual-u4pn.onrender.com/*
-- Repositório: *[link do GitHub]*
+- Repositório: *https://github.com/GustavoDEVVV/LojaVirtual*
 
 ---
 
