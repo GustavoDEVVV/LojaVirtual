@@ -334,11 +334,3 @@ Este projeto foi um marco no aprendizado de desenvolvimento web full stack, com 
 ## Conclusão
 
 Este projeto foi uma excelente oportunidade para colocar em prática conhecimentos de desenvolvimento web full stack, com foco em Python e Flask. Ao longo do processo, foi possível construir uma loja virtual com painel administrativo completo — integrando HTML, CSS, JavaScript, persistência de dados e deploy real em nuvem. A experiência trouxe confiança para encarar projetos web mais robustos, com práticas mais próximas do que é utilizado em ambientes de produção.
-
----
-
-## Autor
-
-**Gustavo Domingues**
-
-- GitHub: *[link do GitHub]*
